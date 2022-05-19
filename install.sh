@@ -1,22 +1,22 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-function log() {
-  status="progress=${1}
-message=${2}
-statusCode=${3}"
-  echo $status > status
+log() {
+  status="progress=${1}\nmessage=${2}\nstatusCode=${3}\n"
+  echo $status | tee status
   echo $status >> /tmp/sim-install.log
+  sleep 5
 }
 
-function log_info() {
-  log ${1} ${2} 200
+log_info() {
+  log "${1}" "${2}" 200
 }
 
-log_info "0" "Starting simulator install..."
-
+log_info "0" "Coping simulator files"
 cp simulator.service /etc/systemd/system/
+
+log_info "50" "Starting simulator service"
 systemctl daemon-reload
-systemctl enable simulator.service
+# systemctl enable simulator.service
 # systemctl start simulator
 # do some other sophisticated stuff here ;-)
 

@@ -1,4 +1,5 @@
-FILES   = *.py *.sh LICENSE *.md requirements.txt *.service *.prs
+FILES   = *.py *.sh LICENSE *.md requirements.txt *.service
+#*.prs
 VERSION	= 1.0.0
 
 simulator.prs:
